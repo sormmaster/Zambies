@@ -9,6 +9,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] float range = 100f;
     [SerializeField] float baseDamage = 25f;
     [SerializeField] ParticleSystem flash;
+    [SerializeField] GameObject hitEffect;
 
 
     void Update()
@@ -35,12 +36,19 @@ public class Weapon : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(FPSC.transform.position, FPSC.transform.forward, out hit, range))
         {
-            Debug.Log("I hit this: " + hit.transform.name);
+            CreateImpact(hit);
             EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
             if (target)
             {
                 target.gotHit(baseDamage);
             }
         }
+    }
+
+    private void CreateImpact(RaycastHit hit)
+    {
+       GameObject impact = Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
+        Destroy(impact, 0.2f);
+
     }
 }
