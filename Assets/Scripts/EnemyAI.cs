@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] Transform target;
-    [SerializeField] float chaseRange = 5f;
+    [SerializeField] float chaseRange = 15f;
     [SerializeField] float turnSpeed = 5f;
 
     NavMeshAgent navMeshAgent;
@@ -27,7 +27,7 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
        
-        if(isProvoked())
+        if(isProvoked() || provoked)
         {
             EngageTarget();
         } else
@@ -47,18 +47,18 @@ public class EnemyAI : MonoBehaviour
 
     private void EngageTarget()
     {
-
-       if(distanceToTarget > 2.0)
+        if (distanceToTarget <= 2.0)
         {
-            
-            ChaseTarget();
-        }
 
-        if(distanceToTarget <= 2.0){
-            
             AttackTarget();
-        } else
+            provoked = false;
+        }else if (distanceToTarget > 2.0 && distanceToTarget <= chaseRange * 2)
         {
+            animator.SetBool("attack", false);
+            ChaseTarget();
+        }else
+        {
+            provoked = false;
             animator.SetBool("attack", false);
         }
       
@@ -83,6 +83,13 @@ public class EnemyAI : MonoBehaviour
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
         }
+        
+    }
+
+    public void OnDamageTaken()
+    {
+        provoked = true;
+        navMeshAgent.speed = navMeshAgent.speed * 1.5f;
         
     }
 

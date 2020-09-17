@@ -8,12 +8,12 @@ public class EnemyHealth : MonoBehaviour
 
     public void gotHit(float damage)
     {
+        BroadcastMessage("OnDamageTaken");
         hitPoints -= damage;
         if(hitPoints <= 0)
         {
             Destroy(gameObject);
         }
     }
-    // Start is called before the first frame update
 
 }
