@@ -8,15 +8,17 @@ public class EnemyAI : MonoBehaviour
 {
     [SerializeField] Transform target;
     [SerializeField] float chaseRange = 5f;
-
+    [SerializeField] float turnSpeed = 5f;
 
     NavMeshAgent navMeshAgent;
     float distanceToTarget = Mathf.Infinity;
     Boolean provoked = false;
     float provokedTime = 0f;
+    Animator animator;
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         
     }
@@ -28,7 +30,9 @@ public class EnemyAI : MonoBehaviour
         if(isProvoked())
         {
             EngageTarget();
-            stayProvoked();
+        } else
+        {
+            animator.SetTrigger("idle");
         }
         
     }
@@ -36,40 +40,50 @@ public class EnemyAI : MonoBehaviour
     Boolean isProvoked()
     {
         distanceToTarget = Vector3.Distance(target.position, transform.position);
-        return distanceToTarget < chaseRange || provoked;
+        return distanceToTarget < chaseRange;
+
     }
 
-    void stayProvoked()
-    {
-        provoked = true;
-    }
 
     private void EngageTarget()
     {
 
-       if(distanceToTarget >= 1.5)
+       if(distanceToTarget > 2.0)
         {
-            print("chasing");
+            
             ChaseTarget();
         }
 
-        if(distanceToTarget <= 1.5){
-            print("attacking");
+        if(distanceToTarget <= 2.0){
+            
             AttackTarget();
+        } else
+        {
+            animator.SetBool("attack", false);
         }
       
     }
 
     private void ChaseTarget()
     {
-        stayProvoked();
+        navMeshAgent.isStopped = false;
+        animator.SetTrigger("move");
         navMeshAgent.SetDestination(target.position);
     }
 
     private void AttackTarget()
     {
-        print("attack and then continue to move" + target.name);
-        print("add attack cooldown");
+        navMeshAgent.isStopped = true;
+        Vector3 direction = (target.position - transform.position).normalized;
+        if (Vector3.Dot(transform.forward, direction) > 0.7f)
+        {
+            animator.SetBool("attack", true);
+        } else
+        {
+            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
+        }
+        
     }
 
     void OnDrawGizmosSelected()

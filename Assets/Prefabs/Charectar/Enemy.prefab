@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 5570172823725209536}
   - component: {fileID: 1561991271902686986}
   - component: {fileID: 108780874}
+  - component: {fileID: 1473503800467165951}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -240,7 +241,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 0b5bdf5a1df619a4ca9fcc721486c739, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -259,3 +260,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoints: 100
+--- !u!114 &1473503800467165951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5570172823725209546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87715988996ad474eab816bb77a47ce7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  damage: 25
