@@ -9,6 +9,7 @@ public void ReloadGame()
     {
         Debug.Log("lets play again");
         SceneManager.LoadScene(0);
+        Time.timeScale = 1;
     }
 
     public void QuitGame()

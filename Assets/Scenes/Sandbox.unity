@@ -1707,7 +1707,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 46, y: -34}
+  m_AnchoredPosition: {x: 46, y: 16}
   m_SizeDelta: {x: 532, y: 99.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1038259479
@@ -2201,7 +2201,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 46.00003, y: -179.20001}
+  m_AnchoredPosition: {x: 46.00003, y: -129.20001}
   m_SizeDelta: {x: 535.8, y: 100.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1263241456
@@ -2543,7 +2543,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 45.400024, y: 160.4}
+  m_AnchoredPosition: {x: 45.400024, y: 210.4}
   m_SizeDelta: {x: 509.6, y: 99.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1423416059
@@ -3388,6 +3388,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 4, z: 4}
   m_Center: {x: 0.0000005364418, y: 1.9999999, z: 0}
+--- !u!1 &2106711900 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3452365289620897256, guid: cd59a7009dad2904cbfd72e6bf389620,
+    type: 3}
+  m_PrefabInstance: {fileID: 3452365289868411738}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2106711907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106711900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dc7092f37962bc4481376952df3ae95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverCanvas: {fileID: 1738045508}
 --- !u!1001 &3452365289868411738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3454,6 +3473,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerFPSController
+      objectReference: {fileID: 0}
+    - target: {fileID: 3452365289609594888, guid: cd59a7009dad2904cbfd72e6bf389620,
+        type: 3}
+      propertyPath: m_MouseLook.lockCursor
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd59a7009dad2904cbfd72e6bf389620, type: 3}
