@@ -40,7 +40,7 @@ public class Weapon : MonoBehaviour
             EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
             if (target)
             {
-                target.gotHit(baseDamage);
+                target.gotHit(baseDamage, transform.position);
             }
         }
     }

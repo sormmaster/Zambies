@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] float hitPoints = 100f;
+   
 
     public void gotHit(float damage)
     {
