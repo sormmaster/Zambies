@@ -4,19 +4,31 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] float hitPoints = 100f;
+    [SerializeField] int hitPoints = 100;
 
     [SerializeField] ParticleSystem hitVfx;
 
-    public void gotHit(float damage, Vector3 location)
+    private bool isDying = false;
+
+    public bool gotHit(int damage, Vector3 location)
     {
+        if (isDying)
+        {
+            return false;
+        }
         BroadcastMessage("OnDamageTaken");
         hitPoints -= damage;
-        if(hitPoints <= 0)
+        
+        playHitVFX(location);
+        if (hitPoints <= 0)
         {
             Destroy(gameObject);
+            isDying = true;
+            return true;
+        } else
+        {
+            return false;
         }
-        playHitVFX(location);
     }
 
     private void playHitVFX(Vector3 location)

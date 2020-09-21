@@ -7,13 +7,29 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] Camera FPSC;
     [SerializeField] float range = 100f;
-    [SerializeField] float baseDamage = 25f;
+    [SerializeField] int baseDamage = 15;
     [SerializeField] ParticleSystem flash;
     [SerializeField] GameObject hitEffect;
+    [SerializeField] Ammo ammoSlot;
+    [SerializeField] bool isActive = true;
 
+    [SerializeField] float delayOnShot = 0f;
+
+    private float lastShot;
+
+    
+
+    void Start()
+    {
+        lastShot = Time.time;
+    }
 
     void Update()
     {
+        if (!isActive || Time.time - lastShot < delayOnShot)
+        {
+            return;
+        }
         if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
@@ -22,8 +38,13 @@ public class Weapon : MonoBehaviour
 
     private void Shoot()
     {
-        PlayMuzzleFlash();
-        CastToHit();
+        lastShot = Time.time;
+        if(ammoSlot.ammoCount() > 0)
+        {
+            ammoSlot.dropAmmo();
+            PlayMuzzleFlash();
+            CastToHit();
+        }
     }
 
     private void PlayMuzzleFlash()
@@ -40,7 +61,10 @@ public class Weapon : MonoBehaviour
             EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
             if (target)
             {
-                target.gotHit(baseDamage, transform.position);
+                if (target.gotHit(baseDamage + ammoSlot.damageFromAmmo(), transform.position))
+                {
+                    ammoSlot.addClip();
+                }
             }
         }
     }
