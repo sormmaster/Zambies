@@ -24,6 +24,7 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         

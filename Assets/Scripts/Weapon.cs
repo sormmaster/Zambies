@@ -12,11 +12,11 @@ public class Weapon : MonoBehaviour
     [SerializeField] GameObject hitEffect;
     [SerializeField] Ammo ammoSlot;
     [SerializeField] bool isActive = true;
-
+    [SerializeField] float reloadDelay = 1f;
     [SerializeField] float delayOnShot = 0f;
 
     private float lastShot;
-
+    private float ReloadingTill;
     
 
     void Start()
@@ -26,30 +26,43 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        if (!isActive || Time.time - lastShot < delayOnShot)
+        if (Input.GetButtonDown("Fire1") && isActive)
         {
-            return;
-        }
-        if (Input.GetButtonDown("Fire1"))
+            if(Time.time > lastShot && Time.time > ReloadingTill)
+            {
+                Shoot();
+            }
+            
+        } else if(Input.GetKeyDown("r") && isActive)
         {
-            Shoot();
+            Reload();
         }
     }
 
     private void Shoot()
     {
-        lastShot = Time.time;
-        if(ammoSlot.ammoCount() > 0)
+        lastShot = Time.time + delayOnShot;
+        if(ammoSlot.clipCount() > 0)
         {
             ammoSlot.dropAmmo();
             PlayMuzzleFlash();
             CastToHit();
+        } else
+        {
+            Reload();
         }
     }
 
     private void PlayMuzzleFlash()
     {
         flash.Play();
+    }
+
+    private void Reload()
+    {
+        Debug.Log("reloading");
+        ReloadingTill = Time.time + reloadDelay;
+        ammoSlot.reload();
     }
 
     private void CastToHit()

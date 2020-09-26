@@ -14,13 +14,14 @@ public class WeaponZoom : MonoBehaviour
     float defaultSensitivity;
     float setSensitivity;
     [SerializeField] float Sensitivityadjustment = 1.5f;
+    [SerializeField] bool isActive = true;
 
     bool zoomToggle = false;
     // Start is called before the first frame update
     void Start()
     {
-        zoomLens = GetComponentInChildren<Camera>();
-        fpsController = GetComponent<FirstPersonController>();
+        fpsController = GetComponentInParent<FirstPersonController>();
+        zoomLens = fpsController.GetComponentInChildren<Camera>();
         defaultZoom = zoomLens.fieldOfView;
         zoomedIn = defaultZoom * zoomAdjustment;
         defaultSensitivity = fpsController.m_MouseLook.XSensitivity;
@@ -30,6 +31,10 @@ public class WeaponZoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!isActive)
+        {
+            return;
+        }
         if (Input.GetButtonDown("Fire2"))
         {
             if (zoomToggle)
