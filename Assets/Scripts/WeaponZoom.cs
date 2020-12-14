@@ -31,7 +31,15 @@ public class WeaponZoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isActive)
+        if (Input.GetAxis("Mouse ScrollWheel") != 0 || Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            zoomLens.fieldOfView = defaultZoom;
+            fpsController.m_MouseLook.XSensitivity = defaultSensitivity;
+            fpsController.m_MouseLook.YSensitivity = defaultSensitivity;
+            zoomToggle = false;
+        }
+
+        if (!isActive)
         {
             return;
         }
@@ -53,5 +61,7 @@ public class WeaponZoom : MonoBehaviour
             }
             
         } 
+
+      
     }
 }

@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] int baseDamage = 15;
     [SerializeField] ParticleSystem flash;
     [SerializeField] GameObject hitEffect;
+    [SerializeField] ParticleSystem rangeIndicator;
     [SerializeField] Ammo ammoSlot;
     [SerializeField] bool isActive = true;
     [SerializeField] float reloadDelay = 1f;
@@ -36,6 +37,9 @@ public class Weapon : MonoBehaviour
         } else if(Input.GetKeyDown("r") && isActive)
         {
             Reload();
+        } else if (Input.GetKeyDown("f"))
+        {
+            castForRange();
         }
     }
 
@@ -47,6 +51,7 @@ public class Weapon : MonoBehaviour
             ammoSlot.dropAmmo();
             PlayMuzzleFlash();
             CastToHit();
+            StartCoroutine(FindObjectOfType<DeathHandler>().notifyUser("Waiting", delayOnShot));
         } else
         {
             Reload();
@@ -60,11 +65,21 @@ public class Weapon : MonoBehaviour
 
     private void Reload()
     {
-        Debug.Log("reloading");
+        StartCoroutine(FindObjectOfType<DeathHandler>().notifyUser("Reloading", reloadDelay));
         ReloadingTill = Time.time + reloadDelay;
         ammoSlot.reload();
     }
 
+    private void castForRange()
+    {
+        RaycastHit check;
+        if (Physics.Raycast(FPSC.transform.position, FPSC.transform.forward, out check, range))
+        {
+            CreateImpact(check);
+            rangeIndicator.transform.position = check.point;
+            rangeIndicator.Play();
+        }
+    }
     private void CastToHit()
     {
         RaycastHit hit;
