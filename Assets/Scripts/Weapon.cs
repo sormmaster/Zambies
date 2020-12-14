@@ -103,4 +103,9 @@ public class Weapon : MonoBehaviour
         Destroy(impact, 0.2f);
 
     }
+
+    public Ammo getAmmoSlot()
+    {
+        return ammoSlot;
+    }
 }

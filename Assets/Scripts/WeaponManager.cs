@@ -79,4 +79,18 @@ public class WeaponManager : MonoBehaviour
             weaponIndex++;
         }
     }
+
+    public bool gotAmmo(AmmoType type, int ammount)
+    {
+        var ammoSlots = GetComponentsInChildren<Ammo>();
+        foreach (Ammo check in ammoSlots)
+        {
+            if(check.type == type)
+            {
+                check.addBullets(ammount);
+                return true;
+            }
+        }
+        return false;
+    }
 }

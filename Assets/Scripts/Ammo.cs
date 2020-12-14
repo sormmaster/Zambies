@@ -7,7 +7,7 @@ public class Ammo : MonoBehaviour
     [SerializeField] int ammoAmount = 10;
     [SerializeField] int ammoDamage = 10;
     [SerializeField] int maxClip = 10;
-    [SerializeField] AmmoType type;
+    [SerializeField] public AmmoType type;
     private int inClip;
 
     void Start()
@@ -30,6 +30,10 @@ public class Ammo : MonoBehaviour
         return ammoDamage;
     }
 
+    public void addBullets(int count)
+    {
+        ammoAmount += count;
+    }
     public void addClip()
     {
         ammoAmount += maxClip;
