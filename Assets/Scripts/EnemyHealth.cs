@@ -8,11 +8,11 @@ public class EnemyHealth : MonoBehaviour
 
     [SerializeField] ParticleSystem hitVfx;
 
-    private bool isDying = false;
+    private bool isDead = false;
 
     public bool gotHit(int damage, Vector3 location)
     {
-        if (isDying)
+        if (isDead)
         {
             return false;
         }
@@ -22,13 +22,18 @@ public class EnemyHealth : MonoBehaviour
         playHitVFX(location);
         if (hitPoints <= 0)
         {
-            Destroy(gameObject);
-            isDying = true;
+            endME();
+            isDead = true;
             return true;
         } else
         {
             return false;
         }
+    }
+
+    public bool IsDead()
+    {
+        return isDead;
     }
 
     private void playHitVFX(Vector3 location)
@@ -38,4 +43,9 @@ public class EnemyHealth : MonoBehaviour
          hitVfx.Play();
     }
 
+    private void endME()
+    {
+        GetComponent<Animator>().Play("Death");
+        Destroy(gameObject, 15.0f);
+    }
 }

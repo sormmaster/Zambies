@@ -18,6 +18,7 @@ public class EnemyAI : MonoBehaviour
     private float lastProvoked;
     private float aggresion = 0;
     Boolean provoked = false;
+    EnemyHealth health;
 
     
     Animator animator;
@@ -27,12 +28,17 @@ public class EnemyAI : MonoBehaviour
         
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        
+        health = GetComponent<EnemyHealth>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (health.IsDead())
+        {
+            enabled = false;
+            navMeshAgent.enabled = false;
+        }
         distanceToTarget = Vector3.Distance(target.position, transform.position);
         if (provoked || canDetect() || InRange())
         {
