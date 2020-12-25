@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponManager : MonoBehaviour
 {
     [SerializeField] int currentWeapon = 0;
-
+    [SerializeField] Text ammo;
     void Start()
     {
         SetActiveWeapon();
@@ -72,6 +73,8 @@ public class WeaponManager : MonoBehaviour
             if(weaponIndex == currentWeapon)
             {
                 weapon.gameObject.SetActive(true);
+                findCurrentAmmo(weapon);
+                    
             } else
             {
                 weapon.gameObject.SetActive(false);
@@ -92,5 +95,24 @@ public class WeaponManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void findCurrentAmmo(Weapon weapon)
+    {
+        Ammo tempAmmo = weapon.getAmmoSlot();
+        setAmmoText(tempAmmo.clipCount(), tempAmmo.ammoCount());
+    }
+
+    public void findCurrentAmmo(Transform weapon)
+    {
+        Ammo tempAmmo = weapon.GetComponent<Weapon>().getAmmoSlot();
+        setAmmoText(tempAmmo.clipCount(), tempAmmo.ammoCount());
+
+    }
+
+    public void setAmmoText(int inClip, int inStock)
+    {
+        string toSet = "Ammo: " + inClip.ToString() + "/" + inStock.ToString();
+        ammo.text = toSet;
     }
 }

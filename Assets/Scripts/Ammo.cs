@@ -16,13 +16,13 @@ public class Ammo : MonoBehaviour
     }
     public int ammoCount()
     {
-        Debug.Log("current Ammo: " + ammoAmount.ToString());
         return ammoAmount;
     }
 
     public void dropAmmo()
     {
         inClip--;
+        FindObjectOfType<WeaponManager>().setAmmoText(inClip, ammoAmount);
     }
 
     public int damageFromAmmo()
@@ -33,10 +33,12 @@ public class Ammo : MonoBehaviour
     public void addBullets(int count)
     {
         ammoAmount += count;
+        FindObjectOfType<WeaponManager>().setAmmoText(inClip, ammoAmount);
     }
     public void addClip()
     {
         ammoAmount += maxClip;
+        FindObjectOfType<WeaponManager>().setAmmoText(inClip, ammoAmount);
     }
 
     public int clipCount()
@@ -55,5 +57,6 @@ public class Ammo : MonoBehaviour
             ammoAmount -= maxClip;
             inClip = maxClip;
         }
+        FindObjectOfType<WeaponManager>().setAmmoText(inClip, ammoAmount);
     }
 }
