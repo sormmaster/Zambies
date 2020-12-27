@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1269711577182883929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1269711577182883931}
+  - component: {fileID: 1269711577182883930}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1269711577182883931
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269711577182883929}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 641, y: 360.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1269711577182883930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269711577182883929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb6bfff9727038489dd021c69d48022, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: rifle
+    clip: {fileID: 8300000, guid: dcb276b9539f4a344b68621f07e8371d, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: shotgun
+    clip: {fileID: 8300000, guid: 468c4c5655f67ab4badb9b40ef628e19, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: sniper
+    clip: {fileID: 8300000, guid: 63053085e1f89d948bd6509fd1a8b413, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: BackGroundMusic
+    clip: {fileID: 8300000, guid: 18c9112f812c1f548bad69337b1d6ff1, type: 3}
+    volume: 0.05
+    pitch: 1
+    source: {fileID: 0}
+  - name: ammoPickUp
+    clip: {fileID: 8300000, guid: b6f91290b36cd794391310ed523b29f6, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: enemyDie
+    clip: {fileID: 8300000, guid: 64d966eec2ad278439c9f222b2c54a07, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: gameLoss
+    clip: {fileID: 8300000, guid: fb2bb34d155ba5b4fbaa978143998f37, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: gameWin
+    clip: {fileID: 8300000, guid: 8a5705bbd9e5f214d84facb017401ad8, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: keyPickUp
+    clip: {fileID: 8300000, guid: d536ca93d6c78d445a18ff91967a2fcf, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: playerDie
+    clip: {fileID: 8300000, guid: 8c5dedbe04792cd438a9607afa2e838a, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: playerHit
+    clip: {fileID: 8300000, guid: 97313a347b4968e42bb5e9c1ac39e06a, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: enemyHit
+    clip: {fileID: 8300000, guid: 02ff9c651cf0e4f4092f5cdf90fe731e, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}

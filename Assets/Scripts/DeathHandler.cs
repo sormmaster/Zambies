@@ -21,6 +21,7 @@ public class DeathHandler : MonoBehaviour
         FindObjectOfType<WeaponManager>().enabled = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        FindObjectOfType<AudioController>().Play("gameLoss");
     }
 
     public void notifyUser(string message)

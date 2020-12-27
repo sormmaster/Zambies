@@ -49,6 +49,7 @@ public class Weapon : MonoBehaviour
         if(ammoSlot.clipCount() > 0)
         {
             ammoSlot.dropAmmo();
+            playFireSound(ammoSlot.type);
             PlayMuzzleFlash();
             CastToHit();
             StartCoroutine(FindObjectOfType<DeathHandler>().notifyUser("Waiting", delayOnShot));
@@ -61,6 +62,25 @@ public class Weapon : MonoBehaviour
     private void PlayMuzzleFlash()
     {
         flash.Play();
+    }
+
+    private void playFireSound(AmmoType type)
+    {
+        string soundForEnum = "";
+        switch (type)
+        {
+            case AmmoType.Rifle:
+                soundForEnum = "rifle";
+                break;
+            case AmmoType.Shotty:
+                soundForEnum = "shotgun";
+                break;
+            case AmmoType.Sniper:
+                soundForEnum = "sniper";
+                break;
+        }
+
+        FindObjectOfType<AudioController>().Play(soundForEnum);
     }
 
     private void Reload()

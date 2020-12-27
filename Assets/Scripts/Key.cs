@@ -9,6 +9,7 @@ public class Key : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            FindObjectOfType<AudioController>().Play("keyPickUp");
             var couldPickup = FindObjectsOfType<Door>();
             foreach(Door gate in couldPickup)
             {

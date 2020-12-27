@@ -11,6 +11,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] float turnSpeed = 5f;
     [SerializeField] float baseSpeed = 3.5f;
     [SerializeField] float anger = 10.0f;
+    [SerializeField] float speedOnHitMultiplyer = 1.5f;
 
     NavMeshAgent navMeshAgent;
     float distanceToTarget = Mathf.Infinity;
@@ -76,7 +77,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (provoked)
         {
-            navMeshAgent.speed = baseSpeed * (1.5f * aggresion);
+            navMeshAgent.speed = baseSpeed * (speedOnHitMultiplyer * aggresion);
         } else if (canDetect())
         {
             navMeshAgent.speed = baseSpeed * 1.0f;

@@ -8,6 +8,8 @@ public class EnemyHealth : MonoBehaviour
 
     [SerializeField] ParticleSystem hitVfx;
 
+    [SerializeField] bool isBoss = false;
+
     private bool isDead = false;
 
     public bool gotHit(int damage, Vector3 location)
@@ -24,9 +26,15 @@ public class EnemyHealth : MonoBehaviour
         {
             endME();
             isDead = true;
+            FindObjectOfType<AudioController>().Play("enemyDie");
+            if (isBoss)
+            {
+                FindObjectOfType<SceneLoader>().theyWon();
+            }
             return true;
         } else
         {
+            FindObjectOfType<AudioController>().Play("enemyHit");
             return false;
         }
     }

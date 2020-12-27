@@ -14,6 +14,7 @@ private void OnTriggerEnter(Collider other)
             bool couldPickup = FindObjectOfType<WeaponManager>().gotAmmo(type, ammount);
             if (couldPickup)
             {
+                FindObjectOfType<AudioController>().Play("ammoPickUp");
                 Debug.Log("Player found pick up");
                 Destroy(gameObject);
             }

@@ -18,11 +18,16 @@ public class PlayerHealth : MonoBehaviour
     {
         hitPoints -= damage;
         updateHealth();
+        
         StartCoroutine(splat());
         if (hitPoints <= 0)
         {
+            FindObjectOfType<AudioController>().Play("playerDie");
             GetComponent<DeathHandler>().die();
-        } 
+        } else
+        {
+            FindObjectOfType<AudioController>().Play("playerHit");
+        }
     }
 
     public void updateHealth()

@@ -16,4 +16,9 @@ public void ReloadGame()
     {
         Application.Quit();
     }
+
+    public void theyWon()
+    {
+        FindObjectOfType<AudioController>().Play("gameWin");
+    }
 }
