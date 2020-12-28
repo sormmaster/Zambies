@@ -14,6 +14,14 @@ public class DeathHandler : MonoBehaviour
         Cursor.visible = false;
     }
 
+    private void Update()
+    {
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
+    }
+
     public void die()
     {
         gameOverCanvas.enabled = true;

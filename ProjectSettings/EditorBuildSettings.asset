@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: af86df5eec07d234d99339938daa09cb
+  - enabled: 1
+    path: Assets/Scenes/Cursed Forest.unity
+    guid: f2b177913b11c0d418142c2a46c66dc3
   m_configObjects: {}

@@ -74,7 +74,8 @@ public class WeaponManager : MonoBehaviour
             {
                 weapon.gameObject.SetActive(true);
                 findCurrentAmmo(weapon);
-                    
+                StartCoroutine(FindObjectOfType<DeathHandler>().notifyUser(weapon.name, 1.5f));
+
             } else
             {
                 weapon.gameObject.SetActive(false);

@@ -27,6 +27,8 @@ public class EnemyHealth : MonoBehaviour
             endME();
             isDead = true;
             FindObjectOfType<AudioController>().Play("enemyDie");
+            float toHeal = Mathf.Clamp((0 - hitPoints), 10, 25);
+            FindObjectOfType<PlayerHealth>().heal(toHeal);
             if (isBoss)
             {
                 FindObjectOfType<SceneLoader>().theyWon();

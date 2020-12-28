@@ -30,6 +30,12 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public void heal(float amount)
+    {
+        hitPoints = Mathf.Clamp(hitPoints + amount, 0, 100);
+        updateHealth();
+    }
+
     public void updateHealth()
     {
         healthInfo.text = "hp: " + hitPoints.ToString();
